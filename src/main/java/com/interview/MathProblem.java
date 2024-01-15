@@ -1,6 +1,7 @@
 package com.interview;
 
 import java.util.List;
+import java.util.TreeSet;
 
 public class MathProblem {
     /*
@@ -15,8 +16,11 @@ public class MathProblem {
     input -> nums = [5,4,1,2,3]
     expected output -> 4, the second largest number
      */
-    public Integer secondMax(List<Integer> nums) {
-        return null;
+    public static Integer secondMax(List<Integer> nums) {
+        if (nums == null || nums.isEmpty() || nums.size() == 1)
+            return null;
+        TreeSet<Integer> numsSet = new TreeSet<>(nums);
+        return numsSet.lower(numsSet.last());
     }
 
     /*
@@ -31,7 +35,10 @@ public class MathProblem {
     input -> nums = [5,4,1,2,3]
     expected output -> 2, the second largest number
      */
-    public Integer secondMin(List<Integer> nums) {
-        return null;
+    public static Integer secondMin(List<Integer> nums) {
+        if (nums == null || nums.isEmpty() || nums.size() == 1)
+            return null;
+        TreeSet<Integer> numsSet = new TreeSet<>(nums);
+        return numsSet.higher(numsSet.first());
     }
 }
