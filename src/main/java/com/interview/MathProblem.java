@@ -25,10 +25,11 @@ public class MathProblem {
         List<Integer> nonNullNumbers = nums.stream()
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
+
         if (validateList(nonNullNumbers))
             return null;
 
-        TreeSet<Integer> numsSet = new TreeSet<>(nums);
+        TreeSet<Integer> numsSet = new TreeSet<>(nonNullNumbers);
         return numsSet.lower(numsSet.last());
     }
 
