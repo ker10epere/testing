@@ -1,7 +1,9 @@
 package com.interview;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 public class MathProblem {
     /*
@@ -17,10 +19,21 @@ public class MathProblem {
     expected output -> 4, the second largest number
      */
     public static Integer secondMax(List<Integer> nums) {
-        if (nums == null || nums.isEmpty() || nums.size() == 1)
+        if (validateList(nums))
             return null;
+
+        List<Integer> nonNullNumbers = nums.stream()
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
+        if (validateList(nonNullNumbers))
+            return null;
+
         TreeSet<Integer> numsSet = new TreeSet<>(nums);
         return numsSet.lower(numsSet.last());
+    }
+
+    private static boolean validateList(List<Integer> nums) {
+        return nums == null || nums.isEmpty() || nums.size() == 1;
     }
 
     /*
@@ -36,7 +49,7 @@ public class MathProblem {
     expected output -> 2, the second largest number
      */
     public static Integer secondMin(List<Integer> nums) {
-        if (nums == null || nums.isEmpty() || nums.size() == 1)
+        if (validateList(nums))
             return null;
         TreeSet<Integer> numsSet = new TreeSet<>(nums);
         return numsSet.higher(numsSet.first());
